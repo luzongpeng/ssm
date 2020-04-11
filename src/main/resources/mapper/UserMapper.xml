@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.lzp.ssm.dao.UserDao">
+<!--    查询所有-->
+    <select id="searchAllUsers" resultType="top.lzp.ssm.entity.User">
+        SELECT * FROM user
+    </select>
+<!--    通过id查询user-->
+    <select id="searchUserById" resultType="top.lzp.ssm.entity.User">
+        select * from user where id = #{id}
+    </select>
+
+<!--    增加用户
+            useGeneratedKeys:如果执行成功则返回主键的值 -->
+    <insert id="addUser1" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into user(username,password) values (#{username},#{password})
+    </insert>
+    <insert id="addUser2" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="top.lzp.ssm.entity.User">
+        insert into user values(#{id},#{username},#{password})
+    </insert>
+</mapper>
